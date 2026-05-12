@@ -1,0 +1,48 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:recommended"],
+    "timezone": "Europe/Istanbul",
+    "schedule": ["before 5am on Monday"],
+    "labels": ["dependencies"],
+    "lockFileMaintenance": {
+        "enabled": true
+    },
+    "packageRules": [
+        {
+            "description": "Root dependencies",
+            "matchPaths": ["package.json"],
+            "commitMessagePrefix": "[Root]",
+            "assignees": ["enesyukselx"]
+        },
+        {
+            "description": "apps/web dependencies",
+            "matchPaths": ["apps/web/**"],
+            "commitMessagePrefix": "[F][web]",
+            "assignees": ["enesyukselx"]
+        },
+        {
+            "description": "apps/docs dependencies",
+            "matchPaths": ["apps/docs/**"],
+            "commitMessagePrefix": "[F][docs]",
+            "assignees": ["enesyukselx"]
+        },
+        {
+            "description": "packages/ui dependencies",
+            "matchPaths": ["packages/ui/**"],
+            "commitMessagePrefix": "[P][ui]",
+            "assignees": ["enesyukselx"]
+        },
+        {
+            "description": "Group minor and patch updates per package",
+            "matchUpdateTypes": ["minor", "patch"],
+            "groupName": "minor-updates-{{parentDir}}",
+            "groupSlug": "minor-updates-{{parentDir}}"
+        },
+        {
+            "description": "Automerge minor and patch devDependencies",
+            "matchDepTypes": ["devDependencies"],
+            "matchUpdateTypes": ["minor", "patch"],
+            "automerge": true
+        }
+    ]
+}
